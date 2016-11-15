@@ -1,0 +1,28 @@
+{
+  "name": "makebot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Matthew Jesuele <mjesuele@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node lib/index.js"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.0",
+    "babel-preset-latest": "^6.16.0",
+    "eslint": "^3.10.1",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-better": "^0.1.5",
+    "eslint-plugin-fp": "^2.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-lodash-fp": "^2.1.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0"
+  },
+  "dependencies": {
+    "botbuilder": "^3.4.4",
+    "restify": "^4.3.0"
+  }
+}
