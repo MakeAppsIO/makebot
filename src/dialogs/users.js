@@ -2,9 +2,10 @@ import builder from 'botbuilder';
 import updateConversationData from '../lib/updateConversationData';
 
 const choices = [
-  'Meh, maybe some friends, testers, and investors.',
+  'Just a few',
   'Up to a million',
   'Millions or more',
+  'Not sure',
 ];
 
 export default type => [
@@ -14,7 +15,8 @@ export default type => [
       choices,
     ),
   (session, { response: { index } }) => {
-    updateConversationData(session, { users: choices[index] });
+    const users = choices[index].toLowerCase();
+    updateConversationData(session, { users });
     session.endDialog();
   },
 ];

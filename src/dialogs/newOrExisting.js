@@ -11,8 +11,8 @@ export default projectType => [
   },
   (session, results) => {
     const isNew = results.response.index === 0;
-    const status = isNew ? 'greenfield' : 'existing';
-    updateConversationData(session, { status });
-    session.beginDialog(routes[projectType][status]);
+    const newOrExisting = isNew ? 'greenfield' : 'existing';
+    updateConversationData(session, { newOrExisting });
+    session.beginDialog(routes[projectType][newOrExisting]);
   },
 ];

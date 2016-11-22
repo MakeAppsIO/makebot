@@ -4,45 +4,55 @@ import description from './dialogs/description';
 import devs from './dialogs/devs';
 import greenfield from './dialogs/greenfield';
 import location from './dialogs/location';
-import platform from './dialogs/platform';
+import newOrExisting from './dialogs/newOrExisting';
+import platforms from './dialogs/platforms';
 import stack from './dialogs/stack';
-import start from './dialogs/start';
 import startDate from './dialogs/startDate';
+import summary from './dialogs/summary';
 import team from './dialogs/team';
 import users from './dialogs/users';
 
+const sharedRoutes = {
+  contact: '/contact',
+  devs: '/devs',
+  location: '/location',
+  startDate: '/startDate',
+  summary: '/summary',
+  team: '/team',
+};
+
 const routesFor = type => ({
-  contact: `${type}/contact`,
-  description: `${type}/description`,
-  devs: `${type}/devs`,
-  existing: `${type}/existing`,
-  greenfield: `${type}/greenfield`,
-  location: `${type}/location`,
-  platform: `${type}/platform`,
-  stack: `${type}/stack`,
-  startDate: `${type}/startDate`,
-  start: `${type}/start`,
-  team: `${type}/team`,
-  users: `${type}/users`,
+  description: `/${type}/description`,
+  existing: `/${type}/existing`,
+  greenfield: `/${type}/greenfield`,
+  newOrExisting: `/${type}/newOrExisting`,
+  platforms: `/${type}/platforms`,
+  stack: `/${type}/stack`,
+  users: `/${type}/users`,
 });
 
+const appRoutes = routesFor('app');
+const botRoutes = routesFor('bot');
+
 const routes = {
-  app: routesFor('app'),
-  bot: routesFor('bot'),
+  app: { ...sharedRoutes, ...appRoutes },
+  bot: { ...sharedRoutes, ...botRoutes },
 };
 
 ['app', 'bot'].forEach(type => {
-  bot.dialog(routes[type].start, start(type));
+  bot.dialog(routes[type].newOrExisting, newOrExisting(type));
   bot.dialog(routes[type].greenfield, greenfield(type));
-  bot.dialog(routes[type].platform, platform(type));
+  bot.dialog(routes[type].platforms, platforms(type));
   bot.dialog(routes[type].users, users(type));
   bot.dialog(routes[type].description, description(type));
-  bot.dialog(routes[type].devs, devs);
-  bot.dialog(routes[type].team, team);
-  bot.dialog(routes[type].location, location);
-  bot.dialog(routes[type].startDate, startDate);
-  bot.dialog(routes[type].contact, contact);
-  bot.dialog(routes[type].stack, stack);
+  bot.dialog(routes[type].stack, stack(type));
 });
+
+bot.dialog(sharedRoutes.devs, devs);
+bot.dialog(sharedRoutes.team, team);
+bot.dialog(sharedRoutes.location, location);
+bot.dialog(sharedRoutes.startDate, startDate);
+bot.dialog(sharedRoutes.contact, contact);
+bot.dialog(sharedRoutes.summary, summary);
 
 export default routes;

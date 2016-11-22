@@ -11,7 +11,7 @@ gulp.task('js', () => {
   gulp.src('src/**/*.js')
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(babel({ presets: ['latest'] }))
+    .pipe(babel({ presets: ['latest', 'stage-3'] }))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist'));
