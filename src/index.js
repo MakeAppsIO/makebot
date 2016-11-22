@@ -1,21 +1,16 @@
-const builder = require('botbuilder');
-const restify = require('restify');
+import { bot } from './initialize';
+import builder from 'botbuilder';
+import routes from './routes';
+import showData from './middleware/showData';
+import showDialogStack from './middleware/showDialogStack';
 
-const server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, () =>
-  console.log('%s listening at %s', server.name, server.url),
-);
-
-const connector = new builder.ChatConnector({
-  appId: process.env.MICROSOFT_APP_ID,
-  appPassword: process.env.MICROSOFT_APP_PASSWORD,
-});
-
-const bot = new builder.UniversalBot(connector);
-
-server.post('/api/messages', connector.listen());
+bot.use(showData);
+bot.use(showDialogStack);
 
 bot.dialog('/', [
-  session => session.send('Hey!'),
-  session => session.send('HI!!'),
+  session => builder.Prompts.choice(session, 'Yo! Do you want an app or a bot?', ['app', 'bot']),
+  (session, results) => {
+    const isApp = results.response.index === 0;
+    session.beginDialog(isApp ? routes.app.start : routes.bot.start);
+  },
 ]);

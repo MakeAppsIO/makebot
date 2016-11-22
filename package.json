@@ -5,7 +5,7 @@
   "author": "Matthew Jesuele <mjesuele@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node lib/index.js"
+    "start": "node dist/index.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
@@ -21,10 +21,13 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^2.2.0",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^2.0.0",
+    "marked": "^0.3.6"
   },
   "dependencies": {
     "botbuilder": "^3.4.4",
-    "restify": "^4.3.0"
+    "lodash": "^4.17.2",
+    "restify": "^4.3.0",
+    "shortid": "^2.2.6"
   }
 }

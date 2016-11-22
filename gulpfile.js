@@ -14,10 +14,10 @@ gulp.task('js', () => {
     .pipe(babel({ presets: ['latest'] }))
     .pipe(uglify())
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('lib'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('default', ['js'], () => {
   gulp.watch('src/**/*.js', ['js']);
-  nodemon({ script: 'lib/index.js', ignore: 'src' });
+  nodemon({ script: 'dist/index.js', ignore: 'src' });
 });
