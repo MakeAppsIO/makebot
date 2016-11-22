@@ -1,8 +1,19 @@
 import builder from 'botbuilder';
+import updateConversationData from '../lib/updateConversationData';
 
 export default type => [
   session => builder.Prompts.confirm(session,
-    `Do you know what tech stack your ${type} uses?`,
+    `Do you know what languages and/or tech stack your ${type} uses?`,
   ),
-  (session, { response: userKnowsStack }) => console.log(userKnowsStack),
+  (session, { response: userKnowsStack }) => {
+    if (userKnowsStack) {
+      builder.Prompts.text(session, 'Describe the languages/stack for me.');
+    } else {
+      session.endDialog('No worries! We\'ll figure it out.');
+    }
+  },
+  (session, { response: stack }) => {
+    updateConversationData(session, { stack });
+    session.endDialog();
+  },
 ];
