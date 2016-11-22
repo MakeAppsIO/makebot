@@ -1,4 +1,5 @@
 import builder from 'botbuilder';
+import emailToMakeApps from '../lib/emailToMakeApps';
 import equals from 'lodash/fp/equals';
 import { oxford } from 'humanize-plus';
 import pick from 'lodash/fp/pick';
@@ -75,6 +76,8 @@ const giveSummary = session => {
 
 const handleConfirmation = (session, { response: looksCorrect }) => {
   if (looksCorrect) {
+    const data = filterFields(session.privateConversationData);
+    emailToMakeApps(data);
     session.endDialog('Great! We\'ll be in touch with you soon.');
   } else {
     session.endDialog('Ah, whoops. Soon you\'ll be able to correct your entries, but for now we have to start over.');

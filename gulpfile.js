@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const babel = require('gulp-babel');
 const gulp = require('gulp');
+const env = require('gulp-env');
 const nodemon = require('gulp-nodemon');
 const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
@@ -19,5 +20,6 @@ gulp.task('js', () => {
 
 gulp.task('default', ['js'], () => {
   gulp.watch('src/**/*.js', ['js']);
+  env({ file: '.env.json' });
   nodemon({ script: 'dist/index.js', ignore: 'src' });
 });
