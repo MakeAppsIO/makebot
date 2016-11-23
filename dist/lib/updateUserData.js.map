@@ -1,0 +1,1 @@
+{"version":3,"sources":["lib/updateUserData.js"],"names":["session","update","Object","assign","userData"],"mappings":"oFACe,SAACA,EAASC,GACvBC,OAAOC,OAAOH,EAAQI,SAAUH","file":"updateUserData.js","sourcesContent":["/* eslint-disable fp/no-mutating-assign */\nexport default (session, update) => {\n  Object.assign(session.userData, update);\n};\n"]}

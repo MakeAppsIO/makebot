@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var dataTypes=["conversationData","dialogData","privateConversationData","userData"];exports.default={botbuilder:function(t,a){var e=function(a){return JSON.stringify(t[a],null,2)};dataTypes.forEach(function(t){return console.log(t+": "+e(t))}),a()}};
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var dataTypes=["conversationData","dialogData","privateConversationData","userData"];exports.default={botbuilder:function(o,a){console.log("\n@@@ showData middleware"),console.log("*** Bot data:");var e=function(a){return JSON.stringify(o[a],null,2)};dataTypes.forEach(function(o){return console.log(o+": "+e(o))}),console.log(""),a()}};
 //# sourceMappingURL=showData.js.map

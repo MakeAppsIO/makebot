@@ -2,6 +2,8 @@ import builder from 'botbuilder';
 
 export default new builder.HeroCard()
   .title('MakeBot')
-  .text('Hey there! I\'m MakeBot, the official bot of Make Apps and Make Bots.')
-  .buttons([{ title: 'Hi MakeBot!', type: 'postBack', value: 'Hi MakeBot!' }])
-  .images([{ url: 'http://placekitten.com/300/300' }]);
+  .subtitle('The official bot of Make Apps and Make Bots.')
+  .images([
+    { url: 'https://s3-us-west-1.amazonaws.com/makeapps-makebots/appslogo-dark.svg' },
+    { url: 'https://s3-us-west-1.amazonaws.com/makeapps-makebots/botslogo.svg' },
+  ]);

@@ -1,22 +1,31 @@
+import './hooks';
+
 import { bot } from './initialize';
 import builder from 'botbuilder';
-import dialogVersion from './middleware/dialogVersion';
+import greeting from './lib/greeting';
 import routes from './routes';
-import sendGreeting from './lib/sendGreeting';
-import showData from './middleware/showData';
-import showDialogStack from './middleware/showDialogStack';
-import showReceiveEvent from './middleware/showReceiveEvent';
 import updateConversationData from './lib/updateConversationData';
+import updateUserData from './lib/updateUserData';
 
-bot.use(showData);
-bot.use(showDialogStack);
-bot.use(showReceiveEvent);
-bot.use(dialogVersion('1.0'));
-
-bot.on('conversationUpdate', sendGreeting);
+bot.dialog('/firstRun', [
+  session => {
+    session.send(greeting(session));
+    builder.Prompts.text(session, 'Hey! I\'m MakeBot. What\'s your name?');
+  },
+  (session, { response: name }) => {
+    updateUserData(session, { name });
+    session.send(`So nice to meet you, ${name}!`);
+    session.replaceDialog('/', true);
+  },
+]);
 
 bot.dialog('/', [
-  session => builder.Prompts.choice(session, 'So nice to meet you! Are you working on an app or a bot?', ['app', 'bot']),
+  (session, fromFirstRun) => {
+    if (!fromFirstRun) {
+      session.send(`Great to see you again, ${session.userData.name}!`);
+    }
+    builder.Prompts.choice(session, 'Are you working on an app or a bot?', ['app', 'bot']);
+  },
   (session, results) => {
     const isApp = results.response.index === 0;
     updateConversationData(session, { type: isApp ? 'app' : 'bot' });
