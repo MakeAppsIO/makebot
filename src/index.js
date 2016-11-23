@@ -8,7 +8,7 @@ import updateConversationData from './lib/updateConversationData';
 bot.use(showData);
 bot.use(showDialogStack);
 bot.use({ receive(event, next) {
-  console.log(event.address);
+  console.log(event);
   next();
 } });
 
