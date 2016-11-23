@@ -1,5 +1,6 @@
 import { bot } from './initialize';
 import builder from 'botbuilder';
+import dialogVersion from './middleware/dialogVersion';
 import routes from './routes';
 import sendGreeting from './lib/sendGreeting';
 import showData from './middleware/showData';
@@ -10,6 +11,7 @@ import updateConversationData from './lib/updateConversationData';
 bot.use(showData);
 bot.use(showDialogStack);
 bot.use(showReceiveEvent);
+bot.use(dialogVersion('1.0'));
 
 bot.on('conversationUpdate', sendGreeting);
 
