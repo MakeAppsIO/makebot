@@ -1,0 +1,2 @@
+"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder);exports.default=(new _botbuilder2.default.HeroCard).title("MakeBot").text("Hey there! I'm MakeBot, the official bot of Make Apps and Make Bots.").buttons([{title:"Hi MakeBot!",type:"postBack",value:"Hi MakeBot!"}]).images([{url:"http://placekitten.com/300/300"}]);
+//# sourceMappingURL=heroCard.js.map

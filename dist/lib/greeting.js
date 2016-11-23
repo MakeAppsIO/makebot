@@ -1,0 +1,2 @@
+"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_heroCard=require("./heroCard"),_heroCard2=_interopRequireDefault(_heroCard);exports.default=function(e){return(new _botbuilder2.default.Message).address(e).addAttachment(_heroCard2.default)};
+//# sourceMappingURL=greeting.js.map

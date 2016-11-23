@@ -1,0 +1,1 @@
+{"version":3,"sources":["middleware/showReceiveEvent.js"],"names":["receive","event","next","console","log"],"mappings":"qFACEA,QADa,SACLC,EAAOC,GACbC,QAAQC,IAAI,kBAAmBH,GAC/BC","file":"showReceiveEvent.js","sourcesContent":["export default {\n  receive(event, next) {\n    console.log('Incoming event:', event);\n    next();\n  },\n};\n"]}
