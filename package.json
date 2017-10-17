@@ -27,7 +27,7 @@
     "marked": "^0.3.6"
   },
   "dependencies": {
-    "botbuilder": "^3.4.4",
+    "botbuilder": "^3.11.0",
     "humanize-plus": "^1.8.2",
     "lodash": "^4.17.2",
     "restify": "^4.3.0",
