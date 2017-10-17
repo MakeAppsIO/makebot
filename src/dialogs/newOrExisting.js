@@ -1,8 +1,8 @@
-import builder from 'botbuilder';
-import routes from '../routes';
-import updateConversationData from '../lib/updateConversationData';
+const builder = require('botbuilder');
+const routes = require('../routes');
+const updateConversationData = require('../lib/updateConversationData');
 
-export default projectType => [
+module.exports = projectType => [
   session => {
     builder.Prompts.choice(session,
       `Is this a new ${projectType} or an existing project?`,

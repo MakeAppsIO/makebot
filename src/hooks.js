@@ -1,11 +1,11 @@
-import { bot } from './initialize';
-import dialogVersion from './middleware/dialogVersion';
-import firstRun from './middleware/firstRun';
-import logAllEvents from './lib/logAllEvents';
-import showData from './middleware/showData';
-import showDialogStack from './middleware/showDialogStack';
-import showReceiveEvent from './middleware/showReceiveEvent';
-import showSession from './middleware/showSession';
+const { bot } = require('./initialize');
+const dialogVersion = require('./middleware/dialogVersion');
+const firstRun = require('./middleware/firstRun');
+const logAllEvents = require('./lib/logAllEvents');
+const showData = require('./middleware/showData');
+const showDialogStack = require('./middleware/showDialogStack');
+const showReceiveEvent = require('./middleware/showReceiveEvent');
+const showSession = require('./middleware/showSession');
 
 const isDebugMode = process.env.DEBUG;
 

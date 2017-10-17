@@ -1,7 +1,7 @@
-import get from 'lodash/fp/get';
-import resetSessionData from '../lib/resetSessionData';
+const get = require('lodash/fp/get');
+const resetSessionData = require('../lib/resetSessionData');
 
-export default {
+module.exports = {
   botbuilder(session, next) {
     const text = get('message.text', session);
     if (text.match(/^reset/)) {

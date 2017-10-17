@@ -1,4 +1,4 @@
-import routes from '../routes';
+const routes = require('../routes');
 
 const dialogs = [
   'users',
@@ -10,7 +10,7 @@ const dialogs = [
   'contact',
 ];
 
-export default type => [
+module.exports = type => [
   session => {
     session.send(`Okay, so you want to make a new ${type}.`);
     session.beginDialog(routes[type].platforms);

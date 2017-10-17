@@ -1,6 +1,6 @@
-import builder from 'botbuilder';
+const builder = require('botbuilder');
 
-export default new builder.HeroCard()
+module.exports = new builder.HeroCard()
   .title('MakeBot')
   .subtitle('The official bot of Make Apps and Make Bots.')
   .images([

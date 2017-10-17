@@ -1,5 +1,5 @@
 /* eslint-disable fp/no-mutation, no-param-reassign */
-export default session => {
+module.exports = session => {
   session.userData = {};
   session.privateConversationData = {};
   session.conversationData = {};

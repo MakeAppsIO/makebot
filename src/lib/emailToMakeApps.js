@@ -1,8 +1,8 @@
-import SparkPost from 'sparkpost';
+const SparkPost = require('sparkpost');
 
 const spark = new SparkPost(process.env.SPARKPOST_API_KEY);
 
-export default data =>
+module.exports = data =>
   spark.transmissions.send({
     content: {
       from: 'makebot@makeapps.io',

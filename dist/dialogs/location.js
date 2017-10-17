@@ -1,2 +1,10 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_updateConversationData=require("../lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData);exports.default=[function(e){return _botbuilder2.default.Prompts.text(e,"Where are you located?")},function(e,t){var r=t.response;(0,_updateConversationData2.default)(e,{location:r}),e.endDialog()}];
+'use strict';
+
+const builder = require('botbuilder');
+const updateConversationData = require('../lib/updateConversationData');
+
+module.exports = [session => builder.Prompts.text(session, 'Where are you located?'), (session, { response: location }) => {
+  updateConversationData(session, { location });
+  session.endDialog();
+}];
 //# sourceMappingURL=location.js.map

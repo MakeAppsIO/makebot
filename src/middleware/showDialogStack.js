@@ -1,9 +1,9 @@
-import __ from 'lodash/fp/__';
-import add from 'lodash/fp/add';
-import get from 'lodash/fp/get';
-import join from 'lodash/fp/join';
-import pipe from 'lodash/fp/pipe';
-import pluck from 'lodash/fp/pluck';
+const __ = require('lodash/fp/__');
+const add = require('lodash/fp/add');
+const get = require('lodash/fp/get');
+const join = require('lodash/fp/join');
+const pipe = require('lodash/fp/pipe');
+const pluck = require('lodash/fp/pluck');
 
 const showDialogStack = pipe(
   get('sessionState.foobar'),
@@ -15,7 +15,7 @@ const showDialogStack = pipe(
   console.log,
 );
 
-export default {
+module.exports = {
   botbuilder(session, next) {
     showDialogStack(session);
     next();

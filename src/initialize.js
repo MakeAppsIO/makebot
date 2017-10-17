@@ -1,5 +1,5 @@
-import builder from 'botbuilder';
-import restify from 'restify';
+const builder = require('botbuilder');
+const restify = require('restify');
 
 const server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, () =>
@@ -16,4 +16,4 @@ const bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 server.get('.*', restify.serveStatic({ directory: './public' }));
 
-export { bot, connector, server };
+module.exports = { bot, connector, server };

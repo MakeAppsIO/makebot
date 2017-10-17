@@ -5,7 +5,7 @@ const dataTypes = [
   'userData',
 ];
 
-export default {
+module.exports = {
   botbuilder(session, next) {
     console.log('\n@@@ showData middleware');
     console.log('*** Bot data:');

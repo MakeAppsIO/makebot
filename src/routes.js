@@ -1,18 +1,18 @@
-import { bot } from './initialize';
-import contact from './dialogs/contact';
-import description from './dialogs/description';
-import devs from './dialogs/devs';
-import existing from './dialogs/existing';
-import greenfield from './dialogs/greenfield';
-import history from './dialogs/history';
-import location from './dialogs/location';
-import newOrExisting from './dialogs/newOrExisting';
-import platforms from './dialogs/platforms';
-import stack from './dialogs/stack';
-import startDate from './dialogs/startDate';
-import summary from './dialogs/summary';
-import team from './dialogs/team';
-import users from './dialogs/users';
+const { bot } = require('./initialize');
+const contact = require('./dialogs/contact');
+const description = require('./dialogs/description');
+const devs = require('./dialogs/devs');
+const existing = require('./dialogs/existing');
+const greenfield = require('./dialogs/greenfield');
+const history = require('./dialogs/history');
+const location = require('./dialogs/location');
+const newOrExisting = require('./dialogs/newOrExisting');
+const platforms = require('./dialogs/platforms');
+const stack = require('./dialogs/stack');
+const startDate = require('./dialogs/startDate');
+const summary = require('./dialogs/summary');
+const team = require('./dialogs/team');
+const users = require('./dialogs/users');
 
 const sharedRoutes = {
   contact: '/contact',
@@ -60,4 +60,4 @@ bot.dialog(sharedRoutes.startDate, startDate);
 bot.dialog(sharedRoutes.contact, contact);
 bot.dialog(sharedRoutes.summary, summary);
 
-export default routes;
+module.exports = routes;

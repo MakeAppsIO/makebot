@@ -1,9 +1,9 @@
-import builder from 'botbuilder';
-import emailToMakeApps from '../lib/emailToMakeApps';
-import equals from 'lodash/fp/equals';
-import { oxford } from 'humanize-plus';
-import pick from 'lodash/fp/pick';
-import pluck from 'lodash/fp/pluck';
+const builder = require('botbuilder');
+const emailToMakeApps = require('../lib/emailToMakeApps');
+const equals = require('lodash/fp/equals');
+const { oxford } = require('humanize-plus');
+const pick = require('lodash/fp/pick');
+const pluck = require('lodash/fp/pluck');
 
 const fields = [
   { name: 'type', display: 'App or bot?' },
@@ -84,7 +84,7 @@ const handleConfirmation = (session, { response: looksCorrect }) => {
   }
 };
 
-export default [
+module.exports = [
   giveSummary,
   handleConfirmation,
 ];

@@ -1,2 +1,16 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_updateConversationData=require("../lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData);exports.default=function(e){return[function(t){return _botbuilder2.default.Prompts.confirm(t,"Do you know what languages and/or tech stack your "+e+" uses?")},function(e,t){var r=t.response;r?_botbuilder2.default.Prompts.text(e,"Describe the languages/stack for me."):e.endDialog("No worries! We'll figure it out.")},function(e,t){var r=t.response;(0,_updateConversationData2.default)(e,{stack:r}),e.endDialog()}]};
+'use strict';
+
+const builder = require('botbuilder');
+const updateConversationData = require('../lib/updateConversationData');
+
+module.exports = type => [session => builder.Prompts.confirm(session, `Do you know what languages and/or tech stack your ${type} uses?`), (session, { response: userKnowsStack }) => {
+  if (userKnowsStack) {
+    builder.Prompts.text(session, 'Describe the languages/stack for me.');
+  } else {
+    session.endDialog('No worries! We\'ll figure it out.');
+  }
+}, (session, { response: stack }) => {
+  updateConversationData(session, { stack });
+  session.endDialog();
+}];
 //# sourceMappingURL=stack.js.map

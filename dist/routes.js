@@ -1,2 +1,71 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _extends=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var i=arguments[t];for(var r in i)Object.prototype.hasOwnProperty.call(i,r)&&(e[r]=i[r])}return e},_initialize=require("./initialize"),_contact=require("./dialogs/contact"),_contact2=_interopRequireDefault(_contact),_description=require("./dialogs/description"),_description2=_interopRequireDefault(_description),_devs=require("./dialogs/devs"),_devs2=_interopRequireDefault(_devs),_existing=require("./dialogs/existing"),_existing2=_interopRequireDefault(_existing),_greenfield=require("./dialogs/greenfield"),_greenfield2=_interopRequireDefault(_greenfield),_history=require("./dialogs/history"),_history2=_interopRequireDefault(_history),_location=require("./dialogs/location"),_location2=_interopRequireDefault(_location),_newOrExisting=require("./dialogs/newOrExisting"),_newOrExisting2=_interopRequireDefault(_newOrExisting),_platforms=require("./dialogs/platforms"),_platforms2=_interopRequireDefault(_platforms),_stack=require("./dialogs/stack"),_stack2=_interopRequireDefault(_stack),_startDate=require("./dialogs/startDate"),_startDate2=_interopRequireDefault(_startDate),_summary=require("./dialogs/summary"),_summary2=_interopRequireDefault(_summary),_team=require("./dialogs/team"),_team2=_interopRequireDefault(_team),_users=require("./dialogs/users"),_users2=_interopRequireDefault(_users),sharedRoutes={contact:"/contact",devs:"/devs",location:"/location",startDate:"/startDate",summary:"/summary",team:"/team"},routesFor=function(e){return{description:"/"+e+"/description",existing:"/"+e+"/existing",greenfield:"/"+e+"/greenfield",history:"/"+e+"/history",newOrExisting:"/"+e+"/newOrExisting",platforms:"/"+e+"/platforms",stack:"/"+e+"/stack",users:"/"+e+"/users"}},appRoutes=routesFor("app"),botRoutes=routesFor("bot"),routes={app:_extends({},sharedRoutes,appRoutes),bot:_extends({},sharedRoutes,botRoutes)};["app","bot"].forEach(function(e){_initialize.bot.dialog(routes[e].newOrExisting,(0,_newOrExisting2.default)(e)),_initialize.bot.dialog(routes[e].existing,(0,_existing2.default)(e)),_initialize.bot.dialog(routes[e].greenfield,(0,_greenfield2.default)(e)),_initialize.bot.dialog(routes[e].platforms,(0,_platforms2.default)(e)),_initialize.bot.dialog(routes[e].users,(0,_users2.default)(e)),_initialize.bot.dialog(routes[e].description,(0,_description2.default)(e)),_initialize.bot.dialog(routes[e].stack,(0,_stack2.default)(e)),_initialize.bot.dialog(routes[e].history,(0,_history2.default)(e))}),_initialize.bot.dialog(sharedRoutes.devs,_devs2.default),_initialize.bot.dialog(sharedRoutes.team,_team2.default),_initialize.bot.dialog(sharedRoutes.location,_location2.default),_initialize.bot.dialog(sharedRoutes.startDate,_startDate2.default),_initialize.bot.dialog(sharedRoutes.contact,_contact2.default),_initialize.bot.dialog(sharedRoutes.summary,_summary2.default),exports.default=routes;
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _require = require('./initialize');
+
+const bot = _require.bot;
+
+const contact = require('./dialogs/contact');
+const description = require('./dialogs/description');
+const devs = require('./dialogs/devs');
+const existing = require('./dialogs/existing');
+const greenfield = require('./dialogs/greenfield');
+const history = require('./dialogs/history');
+const location = require('./dialogs/location');
+const newOrExisting = require('./dialogs/newOrExisting');
+const platforms = require('./dialogs/platforms');
+const stack = require('./dialogs/stack');
+const startDate = require('./dialogs/startDate');
+const summary = require('./dialogs/summary');
+const team = require('./dialogs/team');
+const users = require('./dialogs/users');
+
+const sharedRoutes = {
+  contact: '/contact',
+  devs: '/devs',
+  location: '/location',
+  startDate: '/startDate',
+  summary: '/summary',
+  team: '/team'
+};
+
+const routesFor = type => ({
+  description: `/${type}/description`,
+  existing: `/${type}/existing`,
+  greenfield: `/${type}/greenfield`,
+  history: `/${type}/history`,
+  newOrExisting: `/${type}/newOrExisting`,
+  platforms: `/${type}/platforms`,
+  stack: `/${type}/stack`,
+  users: `/${type}/users`
+});
+
+const appRoutes = routesFor('app');
+const botRoutes = routesFor('bot');
+
+const routes = {
+  app: _extends({}, sharedRoutes, appRoutes),
+  bot: _extends({}, sharedRoutes, botRoutes)
+};
+
+['app', 'bot'].forEach(type => {
+  bot.dialog(routes[type].newOrExisting, newOrExisting(type));
+  bot.dialog(routes[type].existing, existing(type));
+  bot.dialog(routes[type].greenfield, greenfield(type));
+  bot.dialog(routes[type].platforms, platforms(type));
+  bot.dialog(routes[type].users, users(type));
+  bot.dialog(routes[type].description, description(type));
+  bot.dialog(routes[type].stack, stack(type));
+  bot.dialog(routes[type].history, history(type));
+});
+
+bot.dialog(sharedRoutes.devs, devs);
+bot.dialog(sharedRoutes.team, team);
+bot.dialog(sharedRoutes.location, location);
+bot.dialog(sharedRoutes.startDate, startDate);
+bot.dialog(sharedRoutes.contact, contact);
+bot.dialog(sharedRoutes.summary, summary);
+
+module.exports = routes;
 //# sourceMappingURL=routes.js.map

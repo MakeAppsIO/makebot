@@ -1,2 +1,11 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}Object.defineProperty(exports,"__esModule",{value:!0});var _routes=require("../routes"),_routes2=_interopRequireDefault(_routes),dialogs=["users","description","stack","history","devs","team","location","startDate","contact"];exports.default=function(e){return[function(t){t.send("Okay, so you've got an existing "+e+" you want to work on."),t.beginDialog(_routes2.default[e].platforms)}].concat(_toConsumableArray(dialogs.map(function(t){return function(r){return r.beginDialog(_routes2.default[e][t])}})),[function(t){return t.beginDialog(_routes2.default[e].summary)}])};
+'use strict';
+
+const routes = require('../routes');
+
+const dialogs = ['users', 'description', 'stack', 'history', 'devs', 'team', 'location', 'startDate', 'contact'];
+
+module.exports = type => [session => {
+  session.send(`Okay, so you've got an existing ${type} you want to work on.`);
+  session.beginDialog(routes[type].platforms);
+}, ...dialogs.map(dialog => session => session.beginDialog(routes[type][dialog])), session => session.beginDialog(routes[type].summary)];
 //# sourceMappingURL=existing.js.map

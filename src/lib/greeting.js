@@ -1,6 +1,6 @@
-import builder from 'botbuilder';
-import heroCard from './heroCard';
+const builder = require('botbuilder');
+const heroCard = require('./heroCard');
 
-export default session =>
+module.exports = session =>
   new builder.Message(session)
     .addAttachment(heroCard);

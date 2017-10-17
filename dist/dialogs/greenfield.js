@@ -1,2 +1,11 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}function _toConsumableArray(e){if(Array.isArray(e)){for(var r=0,t=Array(e.length);r<e.length;r++)t[r]=e[r];return t}return Array.from(e)}Object.defineProperty(exports,"__esModule",{value:!0});var _routes=require("../routes"),_routes2=_interopRequireDefault(_routes),dialogs=["users","description","devs","team","location","startDate","contact"];exports.default=function(e){return[function(r){r.send("Okay, so you want to make a new "+e+"."),r.beginDialog(_routes2.default[e].platforms)}].concat(_toConsumableArray(dialogs.map(function(r){return function(t){return t.beginDialog(_routes2.default[e][r])}})),[function(r){return r.beginDialog(_routes2.default[e].summary)}])};
+'use strict';
+
+const routes = require('../routes');
+
+const dialogs = ['users', 'description', 'devs', 'team', 'location', 'startDate', 'contact'];
+
+module.exports = type => [session => {
+  session.send(`Okay, so you want to make a new ${type}.`);
+  session.beginDialog(routes[type].platforms);
+}, ...dialogs.map(dialog => session => session.beginDialog(routes[type][dialog])), session => session.beginDialog(routes[type].summary)];
 //# sourceMappingURL=greenfield.js.map

@@ -1,2 +1,14 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_pluck=require("lodash/fp/pluck"),_pluck2=_interopRequireDefault(_pluck),_updateConversationData=require("../lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData),choices=[{display:"ASAP",value:"as soon as possible"},{display:"In the next two weeks",value:"in the next two weeks"},{display:"In two weeks to a month",value:"two weeks to a month from now"},{display:"In more than a month",value:"in more than a month"},{display:"Not sure",value:"not sure"}];exports.default=[function(e){return _botbuilder2.default.Prompts.choice(e,"When do you want to get started?",(0,_pluck2.default)("display",choices))},function(e,t){var a=t.response.index,o=choices[a].value;(0,_updateConversationData2.default)(e,{startDate:o}),e.endDialog()}];
+'use strict';
+
+const builder = require('botbuilder');
+const pluck = require('lodash/fp/pluck');
+const updateConversationData = require('../lib/updateConversationData');
+
+const choices = [{ display: 'ASAP', value: 'as soon as possible' }, { display: 'In the next two weeks', value: 'in the next two weeks' }, { display: 'In two weeks to a month', value: 'two weeks to a month from now' }, { display: 'In more than a month', value: 'in more than a month' }, { display: 'Not sure', value: 'not sure' }];
+
+module.exports = [session => builder.Prompts.choice(session, 'When do you want to get started?', pluck('display', choices)), (session, { response: { index } }) => {
+  const startDate = choices[index].value;
+  updateConversationData(session, { startDate });
+  session.endDialog();
+}];
 //# sourceMappingURL=startDate.js.map

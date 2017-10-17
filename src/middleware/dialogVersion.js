@@ -1,6 +1,6 @@
-import builder from 'botbuilder';
+const builder = require('botbuilder');
 
-export default builder.Middleware.dialogVersion({
+module.exports = builder.Middleware.dialogVersion({
   message: 'Something has changed and we need to start over!',
   resetCommand: /^reset/,
   version: 1.0,

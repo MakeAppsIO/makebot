@@ -1,6 +1,6 @@
-import builder from 'botbuilder';
-import pluck from 'lodash/fp/pluck';
-import updateConversationData from '../lib/updateConversationData';
+const builder = require('botbuilder');
+const pluck = require('lodash/fp/pluck');
+const updateConversationData = require('../lib/updateConversationData');
 
 const choices = [
   { display: 'ASAP', value: 'as soon as possible' },
@@ -10,7 +10,7 @@ const choices = [
   { display: 'Not sure', value: 'not sure' },
 ];
 
-export default [
+module.exports = [
   session => builder.Prompts.choice(session,
     'When do you want to get started?',
     pluck('display', choices),

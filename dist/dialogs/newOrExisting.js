@@ -1,2 +1,15 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_routes=require("../routes"),_routes2=_interopRequireDefault(_routes),_updateConversationData=require("../lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData);exports.default=function(e){return[function(t){_botbuilder2.default.Prompts.choice(t,"Is this a new "+e+" or an existing project?",["new","existing"])},function(t,r){var i=0===r.response.index,u=i?"greenfield":"existing";(0,_updateConversationData2.default)(t,{newOrExisting:u}),t.beginDialog(_routes2.default[e][u])}]};
+'use strict';
+
+const builder = require('botbuilder');
+const routes = require('../routes');
+const updateConversationData = require('../lib/updateConversationData');
+
+module.exports = projectType => [session => {
+  builder.Prompts.choice(session, `Is this a new ${projectType} or an existing project?`, ['new', 'existing']);
+}, (session, results) => {
+  const isNew = results.response.index === 0;
+  const newOrExisting = isNew ? 'greenfield' : 'existing';
+  updateConversationData(session, { newOrExisting });
+  session.beginDialog(routes[projectType][newOrExisting]);
+}];
 //# sourceMappingURL=newOrExisting.js.map

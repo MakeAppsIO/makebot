@@ -1,7 +1,7 @@
-import builder from 'botbuilder';
-import updateConversationData from '../lib/updateConversationData';
+const builder = require('botbuilder');
+const updateConversationData = require('../lib/updateConversationData');
 
-export default type => [
+module.exports = type => [
   session => builder.Prompts.confirm(session,
     `Do you know what languages and/or tech stack your ${type} uses?`,
   ),

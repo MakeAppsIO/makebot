@@ -1,2 +1,15 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _gather=require("../lib/gather"),_gather2=_interopRequireDefault(_gather),_updateConversationData=require("../lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData),choices={app:["Web","Mobile","Other","Not sure"],bot:["Facebook","Slack","Kik","Website","Other","Not sure"]};exports.default=function(e){return[function(t){return t.beginDialog((0,_gather2.default)("What platforms are you interested in?",choices[e]))},function(e,t){(0,_updateConversationData2.default)(e,{platforms:t}),e.endDialog()}]};
+'use strict';
+
+const gather = require('../lib/gather');
+const updateConversationData = require('../lib/updateConversationData');
+
+const choices = {
+  app: ['Web', 'Mobile', 'Other', 'Not sure'],
+  bot: ['Facebook', 'Slack', 'Kik', 'Website', 'Other', 'Not sure']
+};
+
+module.exports = type => [session => session.beginDialog(gather('What platforms are you interested in?', choices[type])), (session, platforms) => {
+  updateConversationData(session, { platforms });
+  session.endDialog();
+}];
 //# sourceMappingURL=platforms.js.map

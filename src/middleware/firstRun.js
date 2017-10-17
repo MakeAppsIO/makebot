@@ -1,6 +1,6 @@
-import builder from 'botbuilder';
+const builder = require('botbuilder');
 
-export default builder.Middleware.firstRun({
+module.exports = builder.Middleware.firstRun({
   dialogId: '/firstRun',
   version: 1.0,
 });

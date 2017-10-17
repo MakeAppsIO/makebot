@@ -1,2 +1,47 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}Object.defineProperty(exports,"__esModule",{value:!0});var _initialize=require("../initialize"),_botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_get=require("lodash/fp/get"),_get2=_interopRequireDefault(_get),_shortid=require("shortid"),_shortid2=_interopRequireDefault(_shortid),_without=require("lodash/fp/without"),_without2=_interopRequireDefault(_without);exports.default=function(e,t){var r=(0,_shortid2.default)(),i=t,o=[];return _initialize.bot.dialog(r,new _botbuilder2.default.SimpleDialog(function(t,r){var u=(0,_get2.default)("response.index",r),l=u===i.length;if(console.log(o,i,u),l)return t.endDialogWithResult(o);if(void 0!==u){var n=i[u];o=[].concat(_toConsumableArray(o),[n]),i=(0,_without2.default)([n],i)}return console.log(o,i),i.length?o.length?_botbuilder2.default.Prompts.choice(t,"Anything else?",[].concat(_toConsumableArray(i),["Nope"])):_botbuilder2.default.Prompts.choice(t,e,[].concat(_toConsumableArray(i),["None"])):t.endDialogWithResult(o)})),r};
+'use strict';
+
+var _require = require('../initialize');
+
+const bot = _require.bot;
+
+const builder = require('botbuilder');
+const get = require('lodash/fp/get');
+const shortid = require('shortid');
+const without = require('lodash/fp/without');
+
+module.exports = (prompt, choices) => {
+  const randomId = shortid();
+
+  let choicesLeft = choices;
+  let chosenSoFar = [];
+
+  bot.dialog(randomId, new builder.SimpleDialog((session, results) => {
+    const choiceIndex = get('response.index', results);
+    const userSaidDone = choiceIndex === choicesLeft.length;
+
+    console.log(chosenSoFar, choicesLeft, choiceIndex);
+
+    if (userSaidDone) {
+      return session.endDialogWithResult(chosenSoFar);
+    }
+
+    if (choiceIndex !== undefined) {
+      const choice = choicesLeft[choiceIndex];
+      /* eslint-disable fp/no-mutation */
+      chosenSoFar = [...chosenSoFar, choice];
+      choicesLeft = without([choice], choicesLeft);
+      /* eslint-enable fp/no-mutation */
+    }
+
+    console.log(chosenSoFar, choicesLeft);
+
+    if (!choicesLeft.length) {
+      return session.endDialogWithResult(chosenSoFar);
+    }
+
+    return chosenSoFar.length ? builder.Prompts.choice(session, 'Anything else?', [...choicesLeft, 'Nope']) : builder.Prompts.choice(session, prompt, [...choicesLeft, 'None']);
+  }));
+
+  return randomId;
+};
 //# sourceMappingURL=gather.js.map

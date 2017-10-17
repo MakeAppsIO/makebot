@@ -1,2 +1,13 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_updateConversationData=require("../lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData),choices=["Just a few","Up to a million","Millions or more","Not sure"];exports.default=function(e){return[function(t){return _botbuilder2.default.Prompts.choice(t,"How many users do you expect for this version of the "+e+"?",choices)},function(e,t){var o=t.response.index,r=choices[o].toLowerCase();(0,_updateConversationData2.default)(e,{users:r}),e.endDialog()}]};
+'use strict';
+
+const builder = require('botbuilder');
+const updateConversationData = require('../lib/updateConversationData');
+
+const choices = ['Just a few', 'Up to a million', 'Millions or more', 'Not sure'];
+
+module.exports = type => [session => builder.Prompts.choice(session, `How many users do you expect for this version of the ${type}?`, choices), (session, { response: { index } }) => {
+  const users = choices[index].toLowerCase();
+  updateConversationData(session, { users });
+  session.endDialog();
+}];
 //# sourceMappingURL=users.js.map

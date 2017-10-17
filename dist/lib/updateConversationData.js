@@ -1,2 +1,6 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=function(e,t){return Object.assign(e.privateConversationData,t)};
+"use strict";
+
+/* eslint-disable fp/no-mutating-assign */
+
+module.exports = (session, update) => Object.assign(session.privateConversationData, update);
 //# sourceMappingURL=updateConversationData.js.map

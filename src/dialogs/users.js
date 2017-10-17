@@ -1,5 +1,5 @@
-import builder from 'botbuilder';
-import updateConversationData from '../lib/updateConversationData';
+const builder = require('botbuilder');
+const updateConversationData = require('../lib/updateConversationData');
 
 const choices = [
   'Just a few',
@@ -8,7 +8,7 @@ const choices = [
   'Not sure',
 ];
 
-export default type => [
+module.exports = type => [
   session =>
     builder.Prompts.choice(session,
       `How many users do you expect for this version of the ${type}?`,

@@ -1,2 +1,13 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_updateConversationData=require("../lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData),choices=["Less than a month","One to six months","Six months to two years","More than two years"];exports.default=function(e){return[function(t){return _botbuilder2.default.Prompts.choice(t,"How long has your "+e+" been in development?",choices)},function(e,t){var o=t.response.index,r=choices[o].toLowerCase();(0,_updateConversationData2.default)(e,{history:r}),e.endDialog()}]};
+'use strict';
+
+const builder = require('botbuilder');
+const updateConversationData = require('../lib/updateConversationData');
+
+const choices = ['Less than a month', 'One to six months', 'Six months to two years', 'More than two years'];
+
+module.exports = type => [session => builder.Prompts.choice(session, `How long has your ${type} been in development?`, choices), (session, { response: { index } }) => {
+  const history = choices[index].toLowerCase();
+  updateConversationData(session, { history });
+  session.endDialog();
+}];
 //# sourceMappingURL=history.js.map

@@ -1,6 +1,6 @@
-import builder from 'botbuilder';
-import pluck from 'lodash/fp/pluck';
-import updateConversationData from '../lib/updateConversationData';
+const builder = require('botbuilder');
+const pluck = require('lodash/fp/pluck');
+const updateConversationData = require('../lib/updateConversationData');
 
 const choices = [
   { display: 'With a team', value: 'with a team' },
@@ -8,7 +8,7 @@ const choices = [
   { display: 'Not sure', value: 'not sure' },
 ];
 
-export default [
+module.exports = [
   session => builder.Prompts.choice(session,
     'Would we be working by ourselves or with a team?',
     pluck('display', choices),

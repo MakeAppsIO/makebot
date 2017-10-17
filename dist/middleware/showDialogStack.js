@@ -1,2 +1,18 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _=require("lodash/fp/__"),_2=_interopRequireDefault(_),_add=require("lodash/fp/add"),_add2=_interopRequireDefault(_add),_get=require("lodash/fp/get"),_get2=_interopRequireDefault(_get),_join=require("lodash/fp/join"),_join2=_interopRequireDefault(_join),_pipe=require("lodash/fp/pipe"),_pipe2=_interopRequireDefault(_pipe),_pluck=require("lodash/fp/pluck"),_pluck2=_interopRequireDefault(_pluck),showDialogStack=(0,_pipe2.default)((0,_get2.default)("sessionState.foobar"),(0,_pluck2.default)("id"),(0,_join2.default)(", "),(0,_add2.default)("\n*** Dialog stack: "),(0,_add2.default)("@@@ showDialogStack middleware"),(0,_add2.default)(_2.default,"\n"),console.log);exports.default={botbuilder:function(e,t){showDialogStack(e),t()}};
+'use strict';
+
+const __ = require('lodash/fp/__');
+const add = require('lodash/fp/add');
+const get = require('lodash/fp/get');
+const join = require('lodash/fp/join');
+const pipe = require('lodash/fp/pipe');
+const pluck = require('lodash/fp/pluck');
+
+const showDialogStack = pipe(get('sessionState.foobar'), pluck('id'), join(', '), add('\n*** Dialog stack: '), add('@@@ showDialogStack middleware'), add(__, '\n'), console.log);
+
+module.exports = {
+  botbuilder(session, next) {
+    showDialogStack(session);
+    next();
+  }
+};
 //# sourceMappingURL=showDialogStack.js.map

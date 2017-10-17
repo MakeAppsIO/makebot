@@ -1,10 +1,10 @@
-import { bot } from '../initialize';
-import builder from 'botbuilder';
-import get from 'lodash/fp/get';
-import shortid from 'shortid';
-import without from 'lodash/fp/without';
+const { bot } = require('../initialize');
+const builder = require('botbuilder');
+const get = require('lodash/fp/get');
+const shortid = require('shortid');
+const without = require('lodash/fp/without');
 
-export default (prompt, choices) => {
+module.exports = (prompt, choices) => {
   const randomId = shortid();
 
   let choicesLeft = choices;

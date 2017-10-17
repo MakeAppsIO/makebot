@@ -1,2 +1,10 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=function(e){e.userData={},e.privateConversationData={},e.conversationData={},e.dialogData={}};
+"use strict";
+
+/* eslint-disable fp/no-mutation, no-param-reassign */
+module.exports = session => {
+  session.userData = {};
+  session.privateConversationData = {};
+  session.conversationData = {};
+  session.dialogData = {};
+};
 //# sourceMappingURL=resetSessionData.js.map

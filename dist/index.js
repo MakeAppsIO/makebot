@@ -1,2 +1,34 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}require("./hooks");var _initialize=require("./initialize"),_botbuilder=require("botbuilder"),_botbuilder2=_interopRequireDefault(_botbuilder),_greeting=require("./lib/greeting"),_greeting2=_interopRequireDefault(_greeting),_routes=require("./routes"),_routes2=_interopRequireDefault(_routes),_updateConversationData=require("./lib/updateConversationData"),_updateConversationData2=_interopRequireDefault(_updateConversationData),_updateUserData=require("./lib/updateUserData"),_updateUserData2=_interopRequireDefault(_updateUserData);_initialize.bot.dialog("/firstRun",[function(e){e.send((0,_greeting2.default)(e)),_botbuilder2.default.Prompts.text(e,"Hey! I'm MakeBot. What's your name?")},function(e,t){var a=t.response;(0,_updateUserData2.default)(e,{name:a}),e.send("So nice to meet you, "+a+"!"),e.replaceDialog("/",!0)}]),_initialize.bot.dialog("/",[function(e,t){t||e.send("Great to see you again, "+e.userData.name+"!"),_botbuilder2.default.Prompts.choice(e,"Are you working on an app or a bot?",["app","bot"])},function(e,t){var a=0===t.response.index;(0,_updateConversationData2.default)(e,{type:a?"app":"bot"}),e.beginDialog(a?_routes2.default.app.newOrExisting:_routes2.default.bot.newOrExisting)}]);
+'use strict';
+
+require('./hooks');
+
+var _require = require('./initialize');
+
+const bot = _require.bot;
+
+const builder = require('botbuilder');
+const greeting = require('./lib/greeting');
+const routes = require('./routes');
+const updateConversationData = require('./lib/updateConversationData');
+const updateUserData = require('./lib/updateUserData');
+
+bot.dialog('/firstRun', [session => {
+  session.send(greeting(session));
+  builder.Prompts.text(session, 'Hey! I\'m MakeBot. What\'s your name?');
+}, (session, { response: name }) => {
+  updateUserData(session, { name });
+  session.send(`So nice to meet you, ${name}!`);
+  session.replaceDialog('/', true);
+}]);
+
+bot.dialog('/', [(session, fromFirstRun) => {
+  if (!fromFirstRun) {
+    session.send(`Great to see you again, ${session.userData.name}!`);
+  }
+  builder.Prompts.choice(session, 'Are you working on an app or a bot?', ['app', 'bot']);
+}, (session, results) => {
+  const isApp = results.response.index === 0;
+  updateConversationData(session, { type: isApp ? 'app' : 'bot' });
+  session.beginDialog(isApp ? routes.app.newOrExisting : routes.bot.newOrExisting);
+}]);
 //# sourceMappingURL=index.js.map

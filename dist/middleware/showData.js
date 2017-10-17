@@ -1,2 +1,15 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var dataTypes=["conversationData","dialogData","privateConversationData","userData"];exports.default={botbuilder:function(o,a){console.log("\n@@@ showData middleware"),console.log("*** Bot data:");var e=function(a){return JSON.stringify(o[a],null,2)};dataTypes.forEach(function(o){return console.log(o+": "+e(o))}),console.log(""),a()}};
+'use strict';
+
+const dataTypes = ['conversationData', 'dialogData', 'privateConversationData', 'userData'];
+
+module.exports = {
+  botbuilder(session, next) {
+    console.log('\n@@@ showData middleware');
+    console.log('*** Bot data:');
+    const formattedData = type => JSON.stringify(session[type], null, 2);
+    dataTypes.forEach(type => console.log(`${type}: ${formattedData(type)}`));
+    console.log('');
+    next();
+  }
+};
 //# sourceMappingURL=showData.js.map

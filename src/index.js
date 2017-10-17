@@ -1,11 +1,11 @@
 import './hooks';
 
-import { bot } from './initialize';
-import builder from 'botbuilder';
-import greeting from './lib/greeting';
-import routes from './routes';
-import updateConversationData from './lib/updateConversationData';
-import updateUserData from './lib/updateUserData';
+const { bot } = require('./initialize');
+const builder = require('botbuilder');
+const greeting = require('./lib/greeting');
+const routes = require('./routes');
+const updateConversationData = require('./lib/updateConversationData');
+const updateUserData = require('./lib/updateUserData');
 
 bot.dialog('/firstRun', [
   session => {

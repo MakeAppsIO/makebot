@@ -1,2 +1,15 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(exports,"__esModule",{value:!0});var _sparkpost=require("sparkpost"),_sparkpost2=_interopRequireDefault(_sparkpost),spark=new _sparkpost2.default(process.env.SPARKPOST_API_KEY);exports.default=function(e){return spark.transmissions.send({content:{from:"makebot@makeapps.io",subject:"New Client Inquiry from MakeBot",text:JSON.stringify(e,null,2)},recipients:[{address:"inquiries@makeapps.io"}]}).then(function(e){return console.log("Successfully sent with response:",e)}).catch(console.error)};
+'use strict';
+
+const SparkPost = require('sparkpost');
+
+const spark = new SparkPost(process.env.SPARKPOST_API_KEY);
+
+module.exports = data => spark.transmissions.send({
+  content: {
+    from: 'makebot@makeapps.io',
+    subject: 'New Client Inquiry from MakeBot',
+    text: JSON.stringify(data, null, 2)
+  },
+  recipients: [{ address: 'inquiries@makeapps.io' }]
+}).then(res => console.log('Successfully sent with response:', res)).catch(console.error);
 //# sourceMappingURL=emailToMakeApps.js.map

@@ -1,5 +1,5 @@
-import omit from 'lodash/fp/omit';
-import pipe from 'lodash/fp/pipe';
+const omit = require('lodash/fp/omit');
+const pipe = require('lodash/fp/pipe');
 
 const events = [
   'error',
@@ -30,7 +30,7 @@ const clean = pipe(
   ]),
 );
 
-export default bot => {
+module.exports = bot => {
   events.forEach(event =>
     bot.on(event, data =>
       // console.log(`\n%%% Event \`${event}\` triggered, passed:\n`, clean(data), '\n'),
