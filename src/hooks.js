@@ -30,6 +30,6 @@ if (isDebugMode) {
 }
 
 const sendConvoStarter = ({ address }) =>
-  bot.send({ address, type: 'message', text: 'Hi! Is anyone there?' });
+  bot.send({ address, type: 'message', text: 'Welcome. I can answer questions for you. How are you today?' });
 
 bot.on('conversationUpdate', sendConvoStarter);

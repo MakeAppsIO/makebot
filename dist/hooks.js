@@ -34,7 +34,7 @@ if (isDebugMode) {
   logAllEvents(bot);
 }
 
-const sendConvoStarter = ({ address }) => bot.send({ address, type: 'message', text: 'Hi! Is anyone there?' });
+const sendConvoStarter = ({ address }) => bot.send({ address, type: 'message', text: 'Welcome. I can answer questions for you. How are you today?' });
 
 bot.on('conversationUpdate', sendConvoStarter);
 //# sourceMappingURL=hooks.js.map

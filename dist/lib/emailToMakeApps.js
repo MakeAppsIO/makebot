@@ -1,15 +1,15 @@
-'use strict';
 
 const SparkPost = require('sparkpost');
 
-const spark = new SparkPost(process.env.SPARKPOST_API_KEY);
+const client = new SparkPost('491011361d3c0fecc49126c0d8e70db85b3943a1');
 
-module.exports = data => spark.transmissions.send({
+
+module.exports = data => client.transmissions.send({
   content: {
-    from: 'makebot@makeapps.io',
+    from: 'meganpmcgee@gmail.com',
     subject: 'New Client Inquiry from MakeBot',
-    text: JSON.stringify(data, null, 2)
+    text: JSON.stringify(data, null, 2),
   },
-  recipients: [{ address: 'inquiries@makeapps.io' }]
+  recipients: [{ address: 'meganpmcgee@gmail.com' }],
 }).then(res => console.log('Successfully sent with response:', res)).catch(console.error);
-//# sourceMappingURL=emailToMakeApps.js.map
+// # sourceMappingURL=emailToMakeApps.js.map
